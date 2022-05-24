@@ -1,0 +1,367 @@
+@import '_common.scss';
+
+// =================================================================================
+// ===================================  Main  ======================================
+// =================================================================================
+
+.swiper {
+    width: 100%; height: 90vh;
+    cursor: pointer;
+}
+.swiper-slide{
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-content{
+    width: 100%; height: 100%;
+    &:hover .main-title, &:hover span{
+        text-decoration: underline;
+    }
+    .main-title{
+        padding: 60px 10px 8px;
+        font-weight: 400;
+        position: relative;
+        sup{
+            font-size: 12px;
+        }
+        b{
+            font-size: 28px;
+            font-weight: 400;
+        }
+        span{
+            position: absolute;
+            right: 10px; bottom: 10px;
+        }
+    }
+}
+.swiper-slide img {
+    display: block;
+    width: 100%; height: 90%;
+    object-fit: cover;
+}
+.swiper-scrollbar-drag{
+    background: rgba(250,250, 250, 1.0) !important;
+}
+// =================================================================================
+// ===================================  Gung  ======================================
+// =================================================================================
+
+.gung-title{
+    margin: 60px auto 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2{
+        font-size: 28px;
+    }
+    .list-view{
+        display: flex;
+        align-items: end;
+        cursor: pointer;
+        p:nth-of-type(1){
+            width: 18px;
+            margin-right: 4px;
+        }
+        p:nth-of-type(2){
+            width: 20px;
+            margin-right: 4px;
+        }
+        .list-sort{
+            font-size: 12px;
+        }
+    }
+}
+
+// =================================================================================
+// ==============================  Gung-list  ======================================
+// =================================================================================
+
+.block-contents-wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .block-contents-contain{
+        margin-bottom: 8px;
+        width: 49.6%; height: 48vh;
+        position: relative;
+        cursor: pointer;
+        .block-content-img{
+            width: 100%; height: 100%;
+            span{display: none;}
+        }
+        .block-content-img:hover span{
+            width: 100%; height: 100%;
+            padding: 10px;
+            background-color: rgba($color, .8);
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 20px;
+            text-align: end;
+            color: #fff;
+            display: block;
+            position: absolute;
+            top: 0; left: 0;
+            right: 0; bottom: 0;
+        }
+    }
+    display: none;
+    &.active{
+        display: flex;
+    }
+}   
+
+.list-contents-wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: none;
+    .list-contents-contain{
+        width: 100%; height: 30vh;
+        margin-bottom: 8px;
+        display: flex;
+        position: relative;
+        cursor: pointer;
+
+        p:nth-of-type(1){
+            width: 60%;
+        }
+        .list-content-text{
+            width: 50%;
+            padding: 10px;
+            display: flex;
+            align-items: flex-start;
+            span:nth-of-type(1){
+                width: 10%;
+                font-size: 12px;
+            }
+            span:nth-of-type(2){
+                width: 20%;
+                font-size: 20px;
+            }
+            span:nth-of-type(3){
+                width: 60%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                // white-space: nowrap;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* 라인수 */
+                -webkit-box-orient: vertical;
+
+            }  
+        }
+    }
+    .list-contents-contain:hover{
+        text-decoration: underline;
+    }
+    &.active{
+        display: block;
+    }
+}
+
+// 좋아요 버튼
+.list-like{
+    padding: 4px;
+    margin: 8px;
+    border-radius: 100%;
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    left: 0; top: 0;
+    .list-like2{
+        display: none;
+    }
+    .list-like1.active{
+        display: none;
+    }
+    .list-like2.active{
+        display: block;
+    }
+}
+
+// =================================================================================
+// =================================  Listdetail  ==================================
+// =================================================================================
+
+.detail-contain{
+    .d-context{
+        margin: 40px 0 20px;
+        h4{
+            padding: 20px 0;
+            font-size: 28px;
+        }
+        .d-text{
+            display: flex;
+            p:nth-of-type(1){
+                width: 32%;
+                color: #242526;
+            }
+            p:nth-of-type(2){
+                width: 32%;
+                color: #242526;
+            }
+            p:nth-of-type(3){
+                width: 60%;
+                color: #242526;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+// =================================================================================
+// =================================  Search  ======================================
+// =================================================================================
+
+.search{
+    >p{
+        height: 40vh;
+        position: relative;
+        span{
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,.6);
+            position: absolute;
+            left: 0; top: 0;
+        }
+    }
+    .search-bar{
+        width: 600px;
+        display: flex;
+        position: absolute;
+        left: calc(50% - 300px); top: 20vh;
+        span img{
+            width: 32px;
+        }
+        input{
+            width: 100%; height: 100%;
+            padding: 4px;
+            border-bottom: 2px solid #fff;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 400;
+            &::placeholder{
+                color: #fff;
+                font-size: 20px;
+                font-weight: 400;
+                font-style: italic;
+            }
+        }
+    }
+}
+.result{
+    display: flex;
+    flex-wrap: wrap;
+    .result-content{
+        width: 320px;
+        margin: 20px 0;
+        display: flex;
+        cursor: pointer;
+        p:nth-of-type(1){
+            margin-right: 8px;
+            color: #242526;
+            font-size: 12px;
+        }
+        p:nth-of-type(2){
+            font-size: 24px;
+        }
+        p:nth-of-type(3){
+            font-size: 24px;
+        }
+    }
+    .result-content:hover p:nth-of-type(2),
+    .result-content:hover p:nth-of-type(3){
+        text-decoration: underline;
+    }
+}
+
+// =================================================================================
+// =================================================================================
+// =================================  mobile  ======================================
+// =================================================================================
+// =================================================================================
+
+@media (min-width: 0) and (max-width: 768px){
+    // =================================================================================
+    // ==============================  Gung-list  ======================================
+    // =================================================================================
+
+    .block-contents-wrap{
+        flex-wrap: wrap;
+        .block-contents-contain{
+            width: 100%; height: 48vh;
+        }
+    }   
+
+    .list-contents-wrap{
+        .list-contents-contain{
+            width: 100%; height: 48vh;
+            display: block;
+            p:nth-of-type(1){
+                width: 100%; height: 80%;
+            }
+            .list-content-text{
+                width: 100%;
+                padding: 8px 8px;
+                display: block;
+                span:nth-of-type(1){
+                    width: 10%;
+                    margin-right: 4px;
+                    font-size: 12px;
+                }
+                span:nth-of-type(2){
+                    width: 30%;
+                    font-size: 20px;
+                }
+                span:nth-of-type(3){
+                    width: 80%;
+                    margin-top: 8px;
+                    -webkit-line-clamp: 1; /* 라인수 */
+                }  
+            }
+        }
+    }
+    // =================================================================================
+    // =================================  Listdetail  ==================================
+    // =================================================================================
+
+    .detail-contain{
+        .d-context{
+            .d-text{
+                display: block;
+                p{
+                    margin: 8px 0;
+                }
+                p:nth-of-type(1){
+                    width: 100%;
+                }
+                p:nth-of-type(2){
+                    width: 100%;
+                }
+                p:nth-of-type(3){
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    // =================================================================================
+    // =================================  Search  ======================================
+    // =================================================================================
+
+    .search{
+        .search-bar{
+            width: 80vw;
+            left: calc(50% - 40vw); top: 20vh;
+        }
+    }
+}
