@@ -8,7 +8,7 @@ React, SCSS, Node.js, Firebase DB
 
 
 ### 데모보기	: https://gogung-451c2.web.app/
-### 기획보기	: https://docs.google.com/presentation/d/1kImZa2YWtZlBW_LTHqCQTli_gOEdEVWli_gu8bOOjaY/edit?usp=sharing
+##### 기획보기	: https://docs.google.com/presentation/d/1kImZa2YWtZlBW_LTHqCQTli_gOEdEVWli_gu8bOOjaY/edit?usp=sharing
 
 
 ## 개요
