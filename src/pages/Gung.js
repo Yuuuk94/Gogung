@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import dataM from '../data/gogungCategory.json';
 import dataD from '../data/gogungListOpenApi.json';
-import List from '../component/List';
+import List from '../component/list/List';
 import grid_view_black_24dp from '../img/grid_view_black_24dp.svg';
 import view_list_black_24dp from '../img/view_list_black_24dp.svg';
 

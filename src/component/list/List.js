@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
-import dataM from '../data/gogungCategory.json';
-import dataD from '../data/gogungListOpenApi.json';
+import dataM from '../../data/gogungCategory.json';
+import dataD from '../../data/gogungListOpenApi.json';
 
 import favorite_border_white_24dp from '../img/favorite_border_white_24dp.svg';
 import favorite_red_24dp from '../img/favorite_red_24dp.svg';

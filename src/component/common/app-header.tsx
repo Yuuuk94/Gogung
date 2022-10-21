@@ -29,10 +29,7 @@ function Header() {
       <div className="mwidth head">
         <div className="h-left">
           <Link to="/">
-            <img
-              src={img.icon}
-              alt="'이미지: flaticon.com'. 이 커버는 Flaticon.com의 자료를 사용해 디자인되었습니다"
-            />
+            <img src={img.icon} alt="이미지: flaticon.com" />
             <h1>고궁</h1>
           </Link>
         </div>

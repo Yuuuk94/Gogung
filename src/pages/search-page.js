@@ -1,12 +1,17 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable camelcase */
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import dataM from '../data/gogungCategory.json';
 import dataD from '../data/gogungListOpenApi.json';
-import search_white_24dp from '../img/search_white_24dp.svg';
+import search_white_24dp from '../assets/images/search_white_24dp.svg';
 
 function Search() {
+  const img = {
+    searchWhite: search_white_24dp,
+  };
   const { http } = dataM;
-  let [search, setSearch] = useState([]);
+  const [search, setSearch] = useState([]);
   const navigate = useNavigate();
   let num = 0;
   let text = '';
@@ -22,14 +27,14 @@ function Search() {
     // console.log(value);
 
     if (value) {
-      search = dataD.list.filter((data) => {
-        return data.contents_kor.search(value) != -1;
+      dataD.list.filter((data) => {
+        return data.contents_kor.search(value) !== -1;
       });
     } else {
       setSearch([]);
     }
     // console.log(search)
-    if (search.length) setSearch(search);
+    if (search.length > 0) setSearch(search);
   }
 
   // 상세페이지 연동
@@ -52,7 +57,7 @@ function Search() {
         </p>
         <div className="mwidth search-bar">
           <span>
-            <img src={search_white_24dp} alt="" />
+            <img src={img.searchWhite} alt="search" />
           </span>
           <input
             type="text"
@@ -61,7 +66,7 @@ function Search() {
           />
         </div>
       </div>
-      <div className="mwidth result">
+      {/* <div className="mwidth result">
         {search?.map((v, k) => {
           return (
             <div
@@ -82,7 +87,7 @@ function Search() {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </>
   );
 }

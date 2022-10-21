@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 
+import NotFound from 'pages/404';
 import Header from './component/common/app-header';
 import Footer from './component/common/app-footer';
 import Main from './pages/main-page';
-// import Search from './pages/Search';
+import Search from './pages/search-page';
 
 // import Gung from './component/Gung';
 // import Login from './component/Login';
@@ -16,10 +17,10 @@ const clientRoutes = [
     path: '/',
     component: <Main />,
   },
-  // {
-  //   path: '/search',
-  //   component: <Search />,
-  // },
+  {
+    path: '/search',
+    component: <Search />,
+  },
 ];
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
         {clientRoutes.map((route) => (
           <Route path={route.path} key={route.path} element={route.component} />
         ))}
+        <Route path="*" element={<NotFound />} />
+
         {/* <Route path="/" element={<Main />} />
         <Route path="/gung/:num" element={<Gung />} />
         <Route path="/search" element={<Search />} />

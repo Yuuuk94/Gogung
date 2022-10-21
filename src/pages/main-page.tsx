@@ -30,7 +30,12 @@ function Main() {
         className="mySwiper"
       >
         {dataM.gogung.map((v, k) => (
-          <SwiperSlide key={v.gung_Name}>
+          <SwiperSlide
+            key={v.gung_Name}
+            onClick={() => {
+              navi(`/gung/${k}`);
+            }}
+          >
             <SlideContent title={v.gung_Name} src={v.imgUrl} />
           </SwiperSlide>
         ))}
@@ -39,7 +44,3 @@ function Main() {
   );
 }
 export default Main;
-
-// onClick={() => {
-//   navi(`/gung/${k}`);
-// }}
