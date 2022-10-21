@@ -1,4 +1,4 @@
-import Listdetail from './Listdetail';
+import React from 'react';
 
 function Footer() {
   return (
