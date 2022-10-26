@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { useParams } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import dataM from '../data/gogungCategory.json';

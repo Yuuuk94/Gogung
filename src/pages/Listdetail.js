@@ -18,8 +18,9 @@ function Listdetail() {
       return gung;
     }
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const v of dataD.list) {
-      if (gungNum == v.serial_number) {
+      if (gungNum === v.serial_number) {
         text = `<div class="d-context">
                             <h4 class="d-title">${v.contents_kor}</h4>
                             <div class="d-text">

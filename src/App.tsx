@@ -7,9 +7,6 @@ import Main from './pages/main-page';
 import Search from './pages/search-page';
 
 // import Gung from './component/Gung';
-// import Login from './component/Login';
-// import Join from './component/Join';
-// import Like from './component/Like';
 // import Listdetail from './component/Listdetail';
 
 const clientRoutes = [
