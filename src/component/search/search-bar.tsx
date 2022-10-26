@@ -6,27 +6,25 @@ import search_white_24dp from '../../assets/images/search_white_24dp.svg';
 
 type SearchBarProps = {
   allGungList: Array<GungListType>;
+  getSearch: (result: Array<GungListType>) => void;
 };
 
-function SearchBar({ allGungList }: SearchBarProps) {
+function SearchBar({ allGungList, getSearch }: SearchBarProps) {
   const img = {
     searchWhite: search_white_24dp,
   };
+
+  // 랜덤 이미지+문구
   const [randomNm, setRandomNm] = useState<number>(0);
-  let recommend = '';
   useEffect(() => {
     const nm = Math.floor(Math.random() * allGungList.length);
     setRandomNm(nm);
   }, []);
 
-  // 랜덤 이미지+문구
-  recommend = `오늘은 "${allGungList[randomNm].contents_kor[0]}"에 가볼까?`;
-
-  const [search, setSearch] = useState<Array<GungListType>>();
-  console.log(search);
+  const recommend = `오늘은 "${allGungList[randomNm].contents_kor[0]}"에 가볼까?`;
 
   // 검색 기능
-  function toSearch(e: React.ChangeEvent<HTMLInputElement>) {
+  function toGungSearch(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
     let result: Array<GungListType> = [];
 
@@ -35,11 +33,11 @@ function SearchBar({ allGungList }: SearchBarProps) {
         return data.contents_kor[0].search(value) !== -1;
       });
     } else {
-      setSearch([]);
+      getSearch([]);
     }
 
     if (result.length > 0) {
-      setSearch(result);
+      getSearch(result);
     }
   }
 
@@ -59,7 +57,7 @@ function SearchBar({ allGungList }: SearchBarProps) {
         <input
           type="text"
           placeholder={recommend}
-          onChange={(e) => toSearch(e)}
+          onChange={(e) => toGungSearch(e)}
         />
       </div>
     </div>
