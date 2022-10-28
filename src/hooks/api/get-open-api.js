@@ -1,17 +1,5 @@
 import axios from 'axios';
-import xml2js from 'xml2js';
-
-// parsing xml to json
-export function parseXml(dataSet) {
-  let result = {};
-  xml2js.parseString(dataSet, { trim: true }, (err, jsonData) => {
-    if (err) {
-      console.log(err);
-    }
-    result = jsonData;
-  });
-  return result;
-}
+import { parseXml } from '../common/parser';
 
 // get Gogung List Data from OpenAPI
 export async function setGungList(gungNm) {
@@ -25,11 +13,11 @@ export async function setGungList(gungNm) {
     .then((response) => {
       const dataSet = response.data;
       const parsingData = parseXml(dataSet);
-      result = parsingData;
+      result = parsingData.result;
     })
     .catch((err) => console.error(err));
 
-  return result.result.list;
+  return result.list;
 }
 
 export async function getAllGungList(callBack) {
