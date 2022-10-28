@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { getGungDetail } from 'hooks/api/get-detail-api';
 import qs from 'qs';
 import { Link } from 'react-router-dom';
-import { GungDetailType } from '../interface/gung';
+import { GungDetailType, GungInfo } from '../interface/gung';
 
-function Listdetail() {
+function Gungdetail() {
   // router query 가져오기
   const query = qs.parse(window.location.search, {
     ignoreQueryPrefix: true,
@@ -14,28 +14,74 @@ function Listdetail() {
   const [gung, setGung] = useState<GungDetailType>();
 
   useEffect(() => {
-    getGungDetail(query, (result: GungDetailType) => {
-      setGung(result);
-    });
+    async function api() {
+      await getGungDetail(query, (result: GungDetailType) => {
+        setGung(result);
+      });
+    }
+    api();
     console.log(gung);
-  }, [gung]);
+  }, []);
 
   return (
     <div className="mwidth detail-contain">
-      {(gung && 'hi') || <Link to="/">자료를 찾을 수 없습니다...</Link>}
-      {/* <div className="d-context">
-        <h4 className="d-title">${v.contents_kor}</h4>
-        <div className="d-text">
-          <p>{v.serial_number}</p>
-          <p>{gung(v.gung_number - 1)}</p>
-          <p>{v.explanation_kor}</p>
-        </div>
-      </div>
-      <p className="d-img">
-        <img src={v.imgUrl} alt="출처:문화재청" />
-      </p> */}
+      {(gung && <GungDetailContent gung={gung} />) || (
+        <div className="footer">로딩 중 ...</div>
+      )}
     </div>
   );
 }
 
-export default Listdetail;
+export default Gungdetail;
+
+type GungDetailContentProps = {
+  gung: GungDetailType;
+};
+function GungDetailContent({ gung }: GungDetailContentProps) {
+  return (
+    <>
+      <div className="d-context">
+        <h4 className="d-title">{gung.contents_kor[0]}</h4>
+        <div className="d-text">
+          <p>{gung.serial_number}</p>
+          <p>{gung.gung_number}</p>
+          <p>{gung.explanation_kor}</p>
+        </div>
+      </div>
+      <p className="d-img">
+        <img src={gung.mainImage[0].imgUrl[0]} alt="출처:문화재청" />
+      </p>
+      <p className="sub-img">
+        {gung.listImg[0].image?.map((img) => (
+          <img src={img} alt="출처:문화재청" key={img} />
+        ))}
+      </p>
+      <div className="d-s-wrap">
+        {gung.imageList[0].imageInfo?.map((data) => (
+          <SubContent data={data} key={data.imageContentsKor[0]} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+type SubContentProps = {
+  data: GungInfo;
+};
+function SubContent({ data }: SubContentProps) {
+  return (
+    <div className="d-s-container">
+      <div className="d-s-context" key="data.imageIndex">
+        <h4 className="d-title">{data.imageContentsKor}</h4>
+        <div className="d-text">
+          <p>{data.imageContentsChi}</p>
+          <p>{data.imageIndex[0]}</p>
+          <p>{data.imageExplanationKor[0]}</p>
+        </div>
+      </div>
+      <p className="d-s-img">
+        <img src={data.imageUrl[0]} alt="출처:문화재청" />
+      </p>
+    </div>
+  );
+}

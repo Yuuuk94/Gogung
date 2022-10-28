@@ -402,6 +402,48 @@ header .menu.active .menu-contents {
   color: #242526;
   text-align: justify;
 }
+.detail-contain .sub-img {
+  padding: 8px 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #eaeaea;
+}
+.detail-contain .sub-img img {
+  width: 24%;
+  height: 12vh;
+  margin: 2px;
+}
+.detail-contain .d-s-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.detail-contain .d-s-wrap .d-s-container {
+  width: 46%;
+  margin: 20px 0 40px;
+  border-bottom: 2px solid #eaeaea;
+}
+.detail-contain .d-s-wrap .d-s-context h4 {
+  padding: 20px 0;
+  font-size: 28px;
+}
+.detail-contain .d-s-wrap .d-s-context .d-text {
+  display: flex;
+}
+.detail-contain .d-s-wrap .d-s-context .d-text p:nth-of-type(1) {
+  width: 20%;
+  color: #242526;
+}
+.detail-contain .d-s-wrap .d-s-context .d-text p:nth-of-type(2) {
+  width: 15%;
+  color: #242526;
+}
+.detail-contain .d-s-wrap .d-s-context .d-text p:nth-of-type(3) {
+  width: 65%;
+  margin-bottom: 16px;
+  color: #242526;
+  text-align: justify;
+}
 
 .search > p {
   height: 40vh;

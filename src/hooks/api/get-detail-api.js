@@ -23,12 +23,8 @@ export async function setGungDetail(query) {
 export async function getGungDetail(query, callBack) {
   try {
     const promise = setGungDetail(query);
-    console.log(promise);
     promise.then((data) => {
-      console.log(data);
-      if (data.length > 0) {
-        callBack(data);
-      }
+      callBack(data);
     });
   } catch (err) {
     console.log(err);

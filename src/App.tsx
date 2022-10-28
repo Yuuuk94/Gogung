@@ -6,7 +6,7 @@ import Footer from './component/common/app-footer';
 import Main from './pages/main-page';
 import Search from './pages/search-page';
 import Gung from './pages/gung-page';
-import Listdetail from './pages/gung-detail-page';
+import Gungdetail from './pages/gung-detail-page';
 
 const clientRoutes = [
   {
@@ -23,7 +23,7 @@ const clientRoutes = [
   },
   {
     path: '/gungdetail',
-    component: <Listdetail />,
+    component: <Gungdetail />,
   },
 ];
 
