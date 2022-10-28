@@ -38,7 +38,7 @@ function Gung() {
         currentView={currentView}
         currentSort={currentSort}
       />
-      <div className="list">
+      <div className="list block-contents-wrap">
         {gungList &&
           gungList.map((gung) => (
             <BlockView key={gung.contents_kor[0]} gung={gung} />
@@ -60,30 +60,28 @@ function BlockView({ gung }: ListViewProps) {
   };
   const [like, setLike] = useState<boolean>(false);
   return (
-    <div className="block-contents-wrap">
-      <div data-s={gung.serial_number} className="block-contents-contain">
-        <p className="block-content-img">
-          <img
-            data-s={gung.serial_number}
-            src={gung.imgUrl[0]}
-            alt="출처:문화재청"
-          />
-          <span data-s={gung.serial_number}>{gung.contents_kor}</span>
-        </p>
-        <span
-          className="list-like"
-          onClick={() => {
-            setLike(!like);
-          }}
-          aria-hidden="true"
-        >
-          {like ? (
-            <img src={img.favoriteRed} alt="빈하트" />
-          ) : (
-            <img src={img.favoriteWhite} alt="좋아요" />
-          )}
-        </span>
-      </div>
+    <div data-s={gung.serial_number[0]} className="block-contents-contain">
+      <p className="block-content-img">
+        <img
+          data-s={gung.serial_number[0]}
+          src={gung.imgUrl[0]}
+          alt="출처:문화재청"
+        />
+        <span data-s={gung.serial_number[0]}>{gung.contents_kor[0]}</span>
+      </p>
+      <span
+        className="list-like"
+        onClick={() => {
+          setLike(!like);
+        }}
+        aria-hidden="true"
+      >
+        {like ? (
+          <img src={img.favoriteRed} alt="빈하트" />
+        ) : (
+          <img src={img.favoriteWhite} alt="좋아요" />
+        )}
+      </span>
     </div>
   );
 }

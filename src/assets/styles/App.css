@@ -297,8 +297,8 @@ header .menu.active .menu-contents {
 }
 .block-contents-wrap .block-contents-contain {
   margin-bottom: 8px;
-  width: 49%;
-  height: 48vh;
+  width: 49.6%;
+  height: 36vh;
   position: relative;
   cursor: pointer;
 }
