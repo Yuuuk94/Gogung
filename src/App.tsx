@@ -5,8 +5,7 @@ import Header from './component/common/app-header';
 import Footer from './component/common/app-footer';
 import Main from './pages/main-page';
 import Search from './pages/search-page';
-
-// import Gung from './component/Gung';
+import Gung from './pages/gung-page';
 // import Listdetail from './component/Listdetail';
 
 const clientRoutes = [
@@ -17,6 +16,10 @@ const clientRoutes = [
   {
     path: '/search',
     component: <Search />,
+  },
+  {
+    path: '/gung/:num',
+    component: <Gung />,
   },
 ];
 

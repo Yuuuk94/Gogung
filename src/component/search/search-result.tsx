@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import GungListType from 'interface/list';
+import { GungListType } from 'interface/gung';
 import gungCategory from '../../data/gogungCategory.json';
 
 type SearchResultProps = {

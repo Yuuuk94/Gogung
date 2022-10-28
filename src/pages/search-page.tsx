@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-import GungListType from 'interface/list';
+import { GungListType } from 'interface/gung';
 import SearchBar from 'component/search/search-bar';
 import SearchResult from 'component/search/search-result';
 import { getAllGungList } from '../hooks/api/get-open-api';
