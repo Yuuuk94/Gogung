@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 
-import GungListType from 'interface/list';
+import { GungListType } from 'interface/gung';
 import search_white_24dp from '../../assets/images/search_white_24dp.svg';
 
 type SearchBarProps = {
@@ -24,7 +24,7 @@ function SearchBar({ allGungList, getSearch }: SearchBarProps) {
   const recommend = `오늘은 "${allGungList[randomNm].contents_kor[0]}"에 가볼까?`;
 
   // 검색 기능
-  function toGungSearch(e: React.ChangeEvent<HTMLInputElement>) {
+  function searchGung(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
     let result: Array<GungListType> = [];
 
@@ -57,7 +57,7 @@ function SearchBar({ allGungList, getSearch }: SearchBarProps) {
         <input
           type="text"
           placeholder={recommend}
-          onChange={(e) => toGungSearch(e)}
+          onChange={(e) => searchGung(e)}
         />
       </div>
     </div>

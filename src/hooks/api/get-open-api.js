@@ -1,20 +1,8 @@
 import axios from 'axios';
-import xml2js from 'xml2js';
-
-// parsing xml to json
-export function parseXml(dataSet) {
-  let result = {};
-  xml2js.parseString(dataSet, { trim: true }, (err, jsonData) => {
-    if (err) {
-      console.log(err);
-    }
-    result = jsonData;
-  });
-  return result;
-}
+import { parseXml } from '../common/parser';
 
 // get Gogung List Data from OpenAPI
-export async function getGungList(gungNm) {
+export async function setGungList(gungNm) {
   const API_URL = process.env.REACT_APP_API_URL;
   let result = {};
 
@@ -25,30 +13,43 @@ export async function getGungList(gungNm) {
     .then((response) => {
       const dataSet = response.data;
       const parsingData = parseXml(dataSet);
-      result = parsingData;
+      result = parsingData.result;
     })
     .catch((err) => console.error(err));
 
-  return result.result.list;
+  return result.list;
 }
 
 export async function getAllGungList(callBack) {
   Promise.all([
-    getGungList(1),
-    getGungList(2),
-    getGungList(3),
-    getGungList(4),
-    getGungList(5),
+    setGungList(1),
+    setGungList(2),
+    setGungList(3),
+    setGungList(4),
+    setGungList(5),
   ])
     .then((data) => {
       const result = [];
       // 각각 궁리스트 합치기
-      data.forEach((v) => {
-        v.forEach((v) => {
+      data.forEach((list) => {
+        list.forEach((v) => {
           result.push(v);
         });
       });
       callBack(result);
     })
     .catch((err) => console.log(err));
+}
+
+export async function getGungList(gungNm, callBack) {
+  try {
+    const promise = setGungList(gungNm);
+    promise.then((data) => {
+      if (data.length > 0) {
+        callBack(data);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }

@@ -41,7 +41,7 @@ type MenuLiProps = {
 function MenuLi({ closeMenu, url, name }: MenuLiProps) {
   return (
     <li onClick={closeMenu} aria-hidden="true">
-      <Link to={`/gung/${url}`}>{name}</Link>
+      <Link to={`/gung/${url}?view=0&sort=0`}>{name}</Link>
     </li>
   );
 }

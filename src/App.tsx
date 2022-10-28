@@ -5,9 +5,8 @@ import Header from './component/common/app-header';
 import Footer from './component/common/app-footer';
 import Main from './pages/main-page';
 import Search from './pages/search-page';
-
-// import Gung from './component/Gung';
-// import Listdetail from './component/Listdetail';
+import Gung from './pages/gung-page';
+import Gungdetail from './pages/gung-detail-page';
 
 const clientRoutes = [
   {
@@ -17,6 +16,14 @@ const clientRoutes = [
   {
     path: '/search',
     component: <Search />,
+  },
+  {
+    path: '/gung/:num',
+    component: <Gung />,
+  },
+  {
+    path: '/gungdetail',
+    component: <Gungdetail />,
   },
 ];
 
@@ -29,11 +36,6 @@ function App() {
           <Route path={route.path} key={route.path} element={route.component} />
         ))}
         <Route path="*" element={<NotFound />} />
-
-        {/* <Route path="/" element={<Main />} />
-        <Route path="/gung/:num" element={<Gung />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/listdetail/:num" element={<Listdetail />} /> */}
       </Routes>
       <Footer />
     </>
