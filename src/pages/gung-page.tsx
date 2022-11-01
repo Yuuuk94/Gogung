@@ -89,13 +89,13 @@ function Gung() {
         currentSort={currentSort}
       />
       <ListContainer listType={currentView}>
-        {currentView === 0
+        {gungListView && currentView === 0
           ? gungListView?.map((gung) => (
               <BlockView key={gung.contents_kor[0]} gung={gung} />
             ))
           : gungListView?.map((gung) => (
               <ListView key={gung.contents_kor[0]} gung={gung} />
-            ))}
+            )) || <div className="loading">로딩 중 ...</div>}
       </ListContainer>
     </>
   );

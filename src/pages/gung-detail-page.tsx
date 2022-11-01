@@ -1,7 +1,7 @@
+/* eslint-disable react/no-danger */
 import { useEffect, useState } from 'react';
 import { getGungDetail } from 'hooks/api/get-detail-api';
 import qs from 'qs';
-import { Link } from 'react-router-dom';
 import { GungDetailType, GungInfo } from '../interface/gung';
 
 function Gungdetail() {
@@ -20,14 +20,11 @@ function Gungdetail() {
       });
     }
     api();
-    console.log(gung);
   }, []);
 
   return (
     <div className="mwidth detail-contain">
-      {(gung && <GungDetailContent gung={gung} />) || (
-        <div className="footer">로딩 중 ...</div>
-      )}
+      {gung && <GungDetailContent gung={gung} />}
     </div>
   );
 }
@@ -45,7 +42,7 @@ function GungDetailContent({ gung }: GungDetailContentProps) {
         <div className="d-text">
           <p>{gung.serial_number}</p>
           <p>{gung.gung_number}</p>
-          <p>{gung.explanation_kor}</p>
+          <p dangerouslySetInnerHTML={{ __html: gung.explanation_kor[0] }} />
         </div>
       </div>
       <p className="d-img">
