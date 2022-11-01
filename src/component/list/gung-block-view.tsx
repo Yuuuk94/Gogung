@@ -18,16 +18,13 @@ function BlockView({ gung }: ListViewProps) {
   }
 
   return (
-    <div
-      className="block-contents-contain"
-      onClick={goDetail}
-      aria-hidden="true"
-    >
-      <p className="block-content-img">
+    <div className="block-contents-contain">
+      <LikeHart gungNm={gung.serial_number[0]} />
+
+      <p className="block-content-img" onClick={goDetail} aria-hidden="true">
         <img src={gung.imgUrl[0]} alt="출처:문화재청" />
         <span>{gung.contents_kor[0]}</span>
       </p>
-      <LikeHart gungNm={gung.serial_number[0]} />
     </div>
   );
 }

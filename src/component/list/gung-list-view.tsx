@@ -16,16 +16,12 @@ function ListView({ gung }: ListViewProps) {
     );
   }
   return (
-    <div
-      className="list-contents-contain"
-      onClick={goDetail}
-      aria-hidden="true"
-    >
-      <p>
+    <div className="list-contents-contain">
+      <LikeHart gungNm={gung.serial_number[0]} />
+      <p onClick={goDetail} aria-hidden="true">
         <img src={gung.imgUrl[0]} alt="출처:문화재청" />
       </p>
-      <LikeHart gungNm={gung.serial_number[0]} />
-      <p className="list-content-text">
+      <p className="list-content-text" onClick={goDetail} aria-hidden="true">
         <span>{gung.serial_number}</span>
         <span>{gung.contents_kor}</span>
         <span dangerouslySetInnerHTML={{ __html: gung.explanation_kor[0] }} />

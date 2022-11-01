@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { getGungDetail } from 'hooks/api/get-detail-api';
 import qs from 'qs';
+import LikeHart from 'component/like/like-hart';
 import { GungDetailType, GungInfo } from '../interface/gung';
 
 function Gungdetail() {
@@ -24,7 +25,9 @@ function Gungdetail() {
 
   return (
     <div className="mwidth detail-contain">
-      {gung && <GungDetailContent gung={gung} />}
+      {(gung && <GungDetailContent gung={gung} />) || (
+        <div className="loading">로딩 중 ...</div>
+      )}
     </div>
   );
 }
@@ -38,7 +41,10 @@ function GungDetailContent({ gung }: GungDetailContentProps) {
   return (
     <>
       <div className="d-context">
-        <h4 className="d-title">{gung.contents_kor[0]}</h4>
+        <div className="d-like">
+          <LikeHart gungNm={gung.serial_number[0]} />
+        </div>
+        <h4>{gung.contents_kor[0]}</h4>
         <div className="d-text">
           <p>{gung.serial_number}</p>
           <p>{gung.gung_number}</p>
