@@ -37,6 +37,7 @@ function Gung() {
 
   useEffect(() => {
     if (gungList !== undefined) {
+      setGungListView(gungList);
       if (currentSort === 0) {
         // 등록순
         const sort = registeredGung(gungList);
@@ -51,7 +52,7 @@ function Gung() {
         setGungListView(sort);
       }
     }
-  }, [gungList, query, gungListView, window.location.search]);
+  }, [query, gungListView]);
 
   return (
     <>
@@ -61,13 +62,14 @@ function Gung() {
         currentSort={currentSort}
       />
       <ListContainer listType={currentView}>
-        {gungListView && currentView === 0
-          ? gungListView?.map((gung) => (
+        {(gungListView &&
+          gungListView?.map((gung) =>
+            currentView === 0 ? (
               <BlockView key={gung.contents_kor[0]} gung={gung} />
-            ))
-          : gungListView?.map((gung) => (
+            ) : (
               <ListView key={gung.contents_kor[0]} gung={gung} />
-            )) || <div className="loading">로딩 중 ...</div>}
+            ),
+          )) || <div className="loading">로딩 중 ...</div>}
       </ListContainer>
     </>
   );

@@ -22,7 +22,6 @@ function LikeHart({ likeState }: LikeHartProps) {
   function clickHart() {
     setLike(!like);
   }
-  // console.log(like);
 
   return (
     <span className="list-like" onClick={clickHart} aria-hidden="true">

@@ -1,6 +1,7 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable camelcase */
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import grid_view_black_24dp from '../../assets/images/grid_view_black_24dp.svg';
 import view_list_black_24dp from '../../assets/images/view_list_black_24dp.svg';
 
@@ -20,16 +21,18 @@ function GungListHeader({
     viewList: view_list_black_24dp,
   };
 
+  const select = useRef<HTMLSelectElement>(null);
   const [view, setView] = useState<number>(currentView);
   const [sort, setSort] = useState<number>(currentSort);
 
   const navi = useNavigate();
   useEffect(() => {
-    navi({
-      search: `?view=${view}&sort=${sort}`,
-    });
+    if (currentView === view || currentSort === sort) {
+      navi({
+        search: `?view=${view}&sort=${sort}`,
+      });
+    }
   }, [view, sort]);
-
   return (
     <div className="mwidth gung-title">
       <h2>{gungName}</h2>
@@ -50,10 +53,10 @@ function GungListHeader({
         >
           <img data-num="1" src={img.viewList} alt="리스트 보기" />
         </span>
-
         <select
+          ref={select}
           className="list-sort"
-          defaultValue={sort}
+          value={sort}
           onChange={(e) => {
             const { value } = e.target;
             const result = Number(value);
