@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getGungName } from 'hooks/getGungName';
+import { getGungName } from 'hooks/gung-name';
 
 type Props = {
   name: string;

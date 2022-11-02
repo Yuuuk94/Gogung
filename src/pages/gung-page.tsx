@@ -2,15 +2,15 @@
 /* eslint-disable camelcase */
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import qs from 'qs';
-import ListView from 'component/list/gung-list-view';
-import BlockView from 'component/list/gung-block-view';
-import { getLikeCookie } from 'hooks/cookies';
-import ListContainer from '../component/list/gung-list-container';
+import ListView from 'component/gung-list/gung-list-view';
+import BlockView from 'component/gung-list/gung-block-view';
+import { getQuery } from 'hooks/url';
+import ListContainer from '../component/gung-list/gung-list-container';
 import dataM from '../data/gogungCategory.json';
 import { getGungList } from '../hooks/api/get-open-api';
 import { GungListType } from '../interface/gung';
-import GungListHeader from '../component/gung/gung-list-header';
+import GungListHeader from '../component/gung-list/gung-list-header';
+import { registeredGung, sortGung } from '../hooks/gung-sort';
 
 function Gung() {
   // gung-list-data 가져오기
@@ -27,10 +27,8 @@ function Gung() {
     });
   }, [pageNm]);
 
-  // router query 가져오기
-  const query = qs.parse(window.location.search, {
-    ignoreQueryPrefix: true,
-  });
+  // query 가져오기
+  const query = getQuery();
   const currentView = Number(query.view);
   const currentSort = Number(query.sort);
 
@@ -38,49 +36,22 @@ function Gung() {
   const [gungListView, setGungListView] = useState<Array<GungListType>>();
 
   useEffect(() => {
-    if (currentSort === 0) {
-      gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-        if (a.serial_number[0] > b.serial_number[0]) {
-          return 1;
-        }
-        if (a.serial_number[0] < b.serial_number[0]) {
-          return -1;
-        }
-        return 0;
-      });
-      setGungListView(gungList);
+    if (gungList !== undefined) {
+      if (currentSort === 0) {
+        // 등록순
+        const sort = registeredGung(gungList);
+        setGungListView(sort);
+      } else if (currentSort === 1) {
+        // 이름순 정렬
+        const sort = sortGung(gungList);
+        setGungListView(sort);
+      } else if (currentSort === 2) {
+        // 이름순 역정렬
+        const sort = sortGung(gungList);
+        setGungListView(sort);
+      }
     }
-
-    if (currentSort === 1) {
-      gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-        if (a.contents_kor[0] > b.contents_kor[0]) {
-          return 1;
-        }
-        if (a.contents_kor[0] < b.contents_kor[0]) {
-          return -1;
-        }
-        return 0;
-      });
-      setGungListView(gungList);
-    }
-
-    if (currentSort === 2) {
-      gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-        if (a.contents_kor[0] < b.contents_kor[0]) {
-          return 1;
-        }
-        if (a.contents_kor[0] > b.contents_kor[0]) {
-          return -1;
-        }
-        return 0;
-      });
-      setGungListView(gungList);
-    }
-
-    if (currentSort === 3) {
-      console.log('좋아요!');
-    }
-  }, [gungList, currentSort, gungListView, currentView]);
+  }, [gungList, query, gungListView, window.location.search]);
 
   return (
     <>

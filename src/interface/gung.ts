@@ -5,6 +5,7 @@ export type GogongCategoryType = {
 };
 
 export type GungListType = {
+  sort(arg0: (a: GungListType, b: GungListType) => 0 | 1 | -1): unknown;
   contents_kor: Array<string>;
   detail_code: Array<string>;
   explanation_kor: Array<string>;

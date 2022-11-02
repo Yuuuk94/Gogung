@@ -60,15 +60,9 @@ function GungListHeader({
             setSort(result);
           }}
         >
-          <option value={0} defaultValue={sort}>
-            등록순
-          </option>
-          <option value={1} defaultValue={sort}>
-            오름차순
-          </option>
-          <option value={2} defaultValue={sort}>
-            내림차순
-          </option>
+          <option value={0}>등록순</option>
+          <option value={1}>오름차순</option>
+          <option value={2}>내림차순</option>
           <option value={3}>인기순</option>
         </select>
       </p>

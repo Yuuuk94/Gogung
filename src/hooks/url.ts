@@ -1,9 +1,12 @@
 import qs from 'qs';
+import { useEffect } from 'react';
 
-export function getQuery(): object {
-  return qs.parse(window.location.search, {
+export function getQuery() {
+  const query = qs.parse(window.location.search, {
     ignoreQueryPrefix: true,
   });
+
+  return query;
 }
 
 export function getURL(): string {

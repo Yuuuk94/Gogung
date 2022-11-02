@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import LikeHart from 'component/like/like-hart';
-import { getGungName } from 'hooks/getGungName';
+import { getGungName } from 'hooks/gung-name';
 import { GungDetailType, GungInfo } from '../../interface/gung';
 import SubContent from './gung-sub-content';
 
