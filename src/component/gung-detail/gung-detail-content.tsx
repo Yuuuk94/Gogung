@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import LikeHart from 'component/like/like-hart';
+import { getGungName } from 'hooks/getGungName';
 import { GungDetailType, GungInfo } from '../../interface/gung';
 import SubContent from './gung-sub-content';
 
@@ -8,6 +9,7 @@ type GungDetailContentProps = {
 };
 
 function GungDetailContent({ gung }: GungDetailContentProps) {
+  const gungName = getGungName(gung.gung_number[0]);
   return (
     <>
       <div className="d-context">
@@ -17,7 +19,7 @@ function GungDetailContent({ gung }: GungDetailContentProps) {
         <h4>{gung.contents_kor[0]}</h4>
         <div className="d-text">
           <p>{gung.serial_number}</p>
-          <p>{gung.gung_number}</p>
+          <p>{gungName}</p>
           <p dangerouslySetInnerHTML={{ __html: gung.explanation_kor[0] }} />
         </div>
       </div>
