@@ -1,15 +1,13 @@
 /* eslint-disable react/no-danger */
 import { useEffect, useState } from 'react';
 import { getGungDetail } from 'hooks/api/get-detail-api';
-import qs from 'qs';
 import LikeHart from 'component/like/like-hart';
 import { GungDetailType, GungInfo } from '../interface/gung';
+import { getQuery } from '../hooks/url';
 
 function Gungdetail() {
   // router query 가져오기
-  const query = qs.parse(window.location.search, {
-    ignoreQueryPrefix: true,
-  });
+  const query = getQuery();
 
   // gung detail data 가져오기
   const [gung, setGung] = useState<GungDetailType>();
@@ -37,12 +35,13 @@ export default Gungdetail;
 type GungDetailContentProps = {
   gung: GungDetailType;
 };
+
 function GungDetailContent({ gung }: GungDetailContentProps) {
   return (
     <>
       <div className="d-context">
         <div className="d-like">
-          <LikeHart gungNm={gung.serial_number[0]} />
+          <LikeHart likeState={false} />
         </div>
         <h4>{gung.contents_kor[0]}</h4>
         <div className="d-text">
@@ -71,6 +70,7 @@ function GungDetailContent({ gung }: GungDetailContentProps) {
 type SubContentProps = {
   data: GungInfo;
 };
+
 function SubContent({ data }: SubContentProps) {
   return (
     <div className="d-s-container">

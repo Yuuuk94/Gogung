@@ -106,7 +106,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   .block-contents-contain {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     width: 49.6%;
     height: 36vh;
     position: relative;
@@ -205,9 +205,9 @@
     margin: 40px 0 20px;
     .d-like {
       position: relative;
-      margin-left: 96%;
+      margin-left: calc(100% - 26px);
       .list-like {
-        margin: 8px 0;
+        margin: 4px 0;
       }
     }
     h4 {
@@ -237,9 +237,9 @@
     flex-wrap: wrap;
     border-bottom: 2px solid #eaeaea;
     img {
-      width: 24%;
+      width: 24.5%;
       height: 12vh;
-      margin: 2px;
+      margin: 0 4px 4px 0;
     }
   }
   .d-s-wrap {
@@ -247,8 +247,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     .d-s-container {
-      width: 46%;
-      margin: 20px 0 40px;
+      width: 520px;
+      margin: 20px auto 40px;
       border-bottom: 2px solid #eaeaea;
     }
     .d-s-context {
@@ -259,15 +259,15 @@
       .d-text {
         display: flex;
         p:nth-of-type(1) {
-          width: 20%;
+          width: 24%;
           color: #242526;
         }
         p:nth-of-type(2) {
-          width: 15%;
+          width: 4%;
           color: #242526;
         }
         p:nth-of-type(3) {
-          width: 65%;
+          width: 70%;
           margin-bottom: 16px;
           color: #242526;
           text-align: justify;

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import qs from 'qs';
 import ListView from 'component/list/gung-list-view';
 import BlockView from 'component/list/gung-block-view';
+import { getLikeCookie } from 'hooks/cookies';
 import ListContainer from '../component/list/gung-list-container';
 import dataM from '../data/gogungCategory.json';
 import { getGungList } from '../hooks/api/get-open-api';
