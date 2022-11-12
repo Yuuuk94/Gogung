@@ -4,7 +4,7 @@
 개인 프로젝트
 
 
-React, SCSS, Node.js, Firebase DB
+React, SCSS, Firebase DB
 
 
 ### 데모보기	: https://gogung-451c2.web.app/

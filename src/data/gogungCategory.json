@@ -1,30 +1,29 @@
 {
-   "http":"https://www.heritage.go.kr",
-   "gogung":[
-      {
-         "key":"1",
-         "gung_Name":"경복궁",
-         "imgUrl":"https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/05/Gyeongbokgung-palace-Seoul-Gwanghwamun-Gate.jpg"
-      },
-      {
-         "key":"2",
-         "gung_Name":"창덕궁",
-         "imgUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/%EC%B0%BD%EB%8D%95%EA%B6%81_%EC%A0%84%EA%B2%BD_%282012%29.jpg/1200px-%EC%B0%BD%EB%8D%95%EA%B6%81_%EC%A0%84%EA%B2%BD_%282012%29.jpg"
-      },
-      {
-         "key":"3",
-         "gung_Name":"창경궁",
-         "imgUrl":"https://d2uh4olaxaj5eq.cloudfront.net/fit-in/0x1018/dda1326b-fe51-473b-9526-b044c2504ac2.jpg"
-      },
-      {
-         "key":"4",
-         "gung_Name":"덕수궁",
-         "imgUrl":"https://upload.wikimedia.org/wikipedia/commons/f/f6/%EB%8D%95%EC%88%98%EA%B6%81_%EC%A0%84%EA%B2%BD_%282013%29.jpg"
-      },
-      {
-         "key":"5",
-         "gung_Name":"종묘",
-         "imgUrl":"https://jm.cha.go.kr/JM/images/main/main_visual_01.jpg"
-      }
-   ]
+  "gogung": [
+    {
+      "key": "1",
+      "gung_Name": "경복궁",
+      "imgUrl": "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/05/Gyeongbokgung-palace-Seoul-Gwanghwamun-Gate.jpg"
+    },
+    {
+      "key": "2",
+      "gung_Name": "창덕궁",
+      "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/%EC%B0%BD%EB%8D%95%EA%B6%81_%EC%A0%84%EA%B2%BD_%282012%29.jpg/1200px-%EC%B0%BD%EB%8D%95%EA%B6%81_%EC%A0%84%EA%B2%BD_%282012%29.jpg"
+    },
+    {
+      "key": "3",
+      "gung_Name": "창경궁",
+      "imgUrl": "https://d2uh4olaxaj5eq.cloudfront.net/fit-in/0x1018/dda1326b-fe51-473b-9526-b044c2504ac2.jpg"
+    },
+    {
+      "key": "4",
+      "gung_Name": "덕수궁",
+      "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/%EB%8D%95%EC%88%98%EA%B6%81_%EC%A0%84%EA%B2%BD_%282013%29.jpg"
+    },
+    {
+      "key": "5",
+      "gung_Name": "종묘",
+      "imgUrl": "https://jm.cha.go.kr/JM/images/main/main_visual_01.jpg"
+    }
+  ]
 }

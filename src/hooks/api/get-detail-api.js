@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { parseXml } from '../common/parser';
+import { parseXml } from '../parser';
 
 // get Gogung List Data from OpenAPI
 export async function setGungDetail(query) {

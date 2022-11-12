@@ -2,84 +2,70 @@
 /* eslint-disable camelcase */
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import qs from 'qs';
-import ListView from 'component/list/gung-list-view';
-import BlockView from 'component/list/gung-block-view';
-import ListContainer from '../component/list/gung-list-container';
+import { getGungQuery } from 'hooks/url';
+import ListContainer from '../component/gung-list/gung-list-container';
 import dataM from '../data/gogungCategory.json';
 import { getGungList } from '../hooks/api/get-open-api';
 import { GungListType } from '../interface/gung';
-import GungListHeader from '../component/gung/gung-list-header';
+import GungListHeader from '../component/gung-list/gung-list-header';
+import { registeredGung, sortGung, reverseSortGung } from '../hooks/gung-sort';
 
 function Gung() {
   // gung-list-data 가져오기
   const { num } = useParams();
-  const pageNm = num;
-  const gogung = dataM.gogung[Number(pageNm) - 1];
+  const gogung = dataM.gogung[Number(num) - 1];
 
   // open data 가져오기
   const [gungList, setGungList] = useState<Array<GungListType>>();
 
   useEffect(() => {
-    getGungList(pageNm, (result: Array<GungListType>) => {
+    getGungList(num, (result: Array<GungListType>) => {
       setGungList(result);
     });
-  }, [pageNm]);
-
-  // router query 가져오기
-  const query = qs.parse(window.location.search, {
-    ignoreQueryPrefix: true,
-  });
-  const currentView = Number(query.view);
-  const currentSort = Number(query.sort);
-
-  // query sort에 따른 데이터 정렬
-  const [gungListView, setGungListView] = useState<Array<GungListType>>();
+  }, [num]);
 
   useEffect(() => {
-    if (currentSort === 0) {
-      gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-        if (a.serial_number[0] > b.serial_number[0]) {
-          return 1;
-        }
-        if (a.serial_number[0] < b.serial_number[0]) {
-          return -1;
-        }
-        return 0;
-      });
+    if (gungList !== undefined) {
       setGungListView(gungList);
     }
+  }, [gungList]);
 
-    if (currentSort === 1) {
-      gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-        if (a.contents_kor[0] > b.contents_kor[0]) {
-          return 1;
-        }
-        if (a.contents_kor[0] < b.contents_kor[0]) {
-          return -1;
-        }
-        return 0;
-      });
-      setGungListView(gungList);
-    }
+  // query 가져오기
+  const query = getGungQuery();
+  const view = query.get('view');
+  const sort = query.get('sort');
+  const [currentView, setView] = useState<number>(Number(view));
+  const [currentSort, setSort] = useState<number>(Number(sort));
 
-    if (currentSort === 2) {
-      gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-        if (a.contents_kor[0] < b.contents_kor[0]) {
-          return 1;
-        }
-        if (a.contents_kor[0] > b.contents_kor[0]) {
-          return -1;
-        }
-        return 0;
-      });
-      setGungListView(gungList);
-    }
+  useEffect(() => {
+    setView(Number(view));
+    setSort(Number(sort));
+  }, [query]);
 
-    if (currentSort === 3) {
-      console.log('좋아요!');
+  // 정렬
+  const [gungListView, setGungListView] = useState<GungListType[]>();
+
+  if (gungListView !== undefined)
+    switch (currentSort) {
+      case 0:
+        // 등록순
+        registeredGung(gungListView);
+        break;
+      case 1:
+        // 이름순 정렬
+        sortGung(gungListView);
+        break;
+      case 2:
+        // 이름역순 정렬
+        reverseSortGung(gungListView);
+        break;
+      case 3:
+        // 좋아요
+        registeredGung(gungListView);
+        break;
+      default:
+        setGungListView([]);
     }
-  }, [gungList, currentSort, gungListView, currentView]);
 
   return (
     <>
@@ -88,15 +74,9 @@ function Gung() {
         currentView={currentView}
         currentSort={currentSort}
       />
-      <ListContainer listType={currentView}>
-        {currentView === 0
-          ? gungListView?.map((gung) => (
-              <BlockView key={gung.contents_kor[0]} gung={gung} />
-            ))
-          : gungListView?.map((gung) => (
-              <ListView key={gung.contents_kor[0]} gung={gung} />
-            ))}
-      </ListContainer>
+      {(gungListView && (
+        <ListContainer currentView={currentView} gungList={gungListView} />
+      )) || <div className="loading">로딩 중 ...</div>}
     </>
   );
 }

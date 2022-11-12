@@ -1,23 +1,19 @@
 import axios from 'axios';
-import { parseXml } from '../common/parser';
+import { parseXml } from '../parser';
 
 // get Gogung List Data from OpenAPI
 export async function setGungList(gungNm) {
-  const API_URL = process.env.REACT_APP_API_URL;
-  let result = {};
-
-  await axios({
-    method: 'get',
-    url: `${API_URL}/heri/gungDetail/gogungListOpenApi.do?gung_number=${gungNm}`,
-  })
+  const client = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+  const result = await client
+    .get(`/heri/gungDetail/gogungListOpenApi.do?gung_number=${gungNm}`)
     .then((response) => {
       const dataSet = response.data;
       const parsingData = parseXml(dataSet);
-      result = parsingData.result;
+      return parsingData.result.list;
     })
     .catch((err) => console.error(err));
 
-  return result.list;
+  return result;
 }
 
 export async function getAllGungList(callBack) {
@@ -41,14 +37,18 @@ export async function getAllGungList(callBack) {
     .catch((err) => console.log(err));
 }
 
-export async function getGungList(gungNm, callBack) {
+export function getGungList(gungNm, callBack) {
   try {
     const promise = setGungList(gungNm);
-    promise.then((data) => {
-      if (data.length > 0) {
-        callBack(data);
-      }
-    });
+    promise
+      .then((data) => {
+        if (data.length > 0) {
+          callBack(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } catch (err) {
     console.log(err);
   }

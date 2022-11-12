@@ -25,9 +25,9 @@ function Search() {
 
   return (
     <>
-      {allGungList && (
+      {(allGungList && (
         <SearchBar allGungList={allGungList} getSearch={getSearch} />
-      )}
+      )) || <div className="loading">로딩 중 ...</div>}
       {search && <SearchResult search={search} />}
     </>
   );
