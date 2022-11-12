@@ -50,12 +50,10 @@ function Gung() {
       case 0:
         // 등록순
         registeredGung(gungListView);
-
         break;
       case 1:
         // 이름순 정렬
         sortGung(gungListView);
-
         break;
       case 2:
         // 이름역순 정렬
@@ -68,15 +66,16 @@ function Gung() {
       default:
         setGungListView([]);
     }
+
   return (
     <>
-      <GungListHeader gungName={gogung.gung_Name} />
+      <GungListHeader
+        gungName={gogung.gung_Name}
+        currentView={currentView}
+        currentSort={currentSort}
+      />
       {(gungListView && (
-        <ListContainer
-          currentView={currentView}
-          currentSort={currentSort}
-          gungList={gungListView}
-        />
+        <ListContainer currentView={currentView} gungList={gungListView} />
       )) || <div className="loading">로딩 중 ...</div>}
     </>
   );

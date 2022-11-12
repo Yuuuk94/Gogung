@@ -5,17 +5,10 @@ import ListView from './gung-list-view';
 
 type ListContainerProps = {
   currentView: number;
-  currentSort: number;
   gungList: GungListType[];
 };
 
-function ListContainer({
-  currentView,
-  currentSort,
-  gungList,
-}: ListContainerProps) {
-  console.log(gungList, currentSort);
-
+function ListContainer({ currentView, gungList }: ListContainerProps) {
   return (
     <div
       className={
