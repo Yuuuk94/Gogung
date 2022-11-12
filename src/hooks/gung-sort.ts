@@ -84,3 +84,19 @@ export const sortGung = (gungList: Array<GungListType>) => {
 
   return list;
 };
+
+export const reverseSortGung = (gungList: Array<GungListType>) => {
+  const list = gungList?.sort(
+    (a: GungListType, b: GungListType): 1 | 0 | -1 => {
+      if (a.contents_kor[0] < b.contents_kor[0]) {
+        return 1;
+      }
+      if (a.contents_kor[0] > b.contents_kor[0]) {
+        return -1;
+      }
+      return 0;
+    },
+  );
+
+  return list;
+};
