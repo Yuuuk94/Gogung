@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import { GungListType } from 'interface/gung';
+import BlockView from './gung-block-view';
+import ListView from './gung-list-view';
 
 type ListContainerProps = {
-  children: React.ReactNode;
-  listType: number;
+  currentView: number;
+  gungList: GungListType[];
 };
 
-function ListContainer({ children, listType }: ListContainerProps) {
+function ListContainer({ currentView, gungList }: ListContainerProps) {
   return (
     <div
       className={
-        listType === 0
+        currentView === 0
           ? 'mwidth block-contents-wrap'
           : 'mwidth list-contents-wrap'
       }
     >
-      {children}
+      {gungList &&
+        gungList.map((gung) =>
+          currentView === 0 ? (
+            <BlockView key={gung.contents_kor[0]} gung={gung} />
+          ) : (
+            <ListView key={gung.contents_kor[0]} gung={gung} />
+          ),
+        )}
     </div>
   );
 }

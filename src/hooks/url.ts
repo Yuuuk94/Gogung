@@ -1,10 +1,17 @@
 import qs from 'qs';
-import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export function getQuery() {
   const query = qs.parse(window.location.search, {
     ignoreQueryPrefix: true,
   });
+
+  return query;
+}
+
+export function getGungQuery() {
+  const { search } = useLocation();
+  const query = new URLSearchParams(search);
 
   return query;
 }

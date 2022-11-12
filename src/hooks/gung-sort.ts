@@ -55,29 +55,32 @@ import { GungListType } from '../interface/gung';
 // }
 
 export const registeredGung = (gungList: Array<GungListType>) => {
-  gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-    if (a.serial_number[0] > b.serial_number[0]) {
-      return 1;
-    }
-    if (a.serial_number[0] < b.serial_number[0]) {
-      return -1;
-    }
-    return 0;
-  });
-
-  return gungList;
+  const list = gungList?.sort(
+    (a: GungListType, b: GungListType): 1 | 0 | -1 => {
+      if (a.serial_number[0] > b.serial_number[0]) {
+        return 1;
+      }
+      if (a.serial_number[0] < b.serial_number[0]) {
+        return -1;
+      }
+      return 0;
+    },
+  );
+  return list;
 };
 
 export const sortGung = (gungList: Array<GungListType>) => {
-  gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-    if (a.contents_kor[0] > b.contents_kor[0]) {
-      return 1;
-    }
-    if (a.contents_kor[0] < b.contents_kor[0]) {
-      return -1;
-    }
-    return 0;
-  });
+  const list = gungList?.sort(
+    (a: GungListType, b: GungListType): 1 | 0 | -1 => {
+      if (a.contents_kor[0] > b.contents_kor[0]) {
+        return 1;
+      }
+      if (a.contents_kor[0] < b.contents_kor[0]) {
+        return -1;
+      }
+      return 0;
+    },
+  );
 
-  return gungList;
+  return list;
 };
