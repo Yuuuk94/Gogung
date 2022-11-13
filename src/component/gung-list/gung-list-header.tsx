@@ -31,7 +31,7 @@ function GungListHeader({
         {
           search: `?view=${view}&sort=${sort}`,
         },
-        { replace: true },
+        // { replace: true },
       );
     }
   }, [view, sort]);

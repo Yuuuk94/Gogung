@@ -1,3 +1,4 @@
+import { getLikeCookie } from 'hooks/cookies';
 import { GungListType } from 'interface/gung';
 import { useEffect, useState } from 'react';
 import BlockView from './gung-block-view';

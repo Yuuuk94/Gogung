@@ -17,7 +17,7 @@ function ListView({ gung }: ListViewProps) {
   }
   return (
     <div className="list-contents-contain">
-      <LikeHart likeState={false} />
+      <LikeHart likeState={false} serialNum={gung.serial_number[0]} />
       <p onClick={goDetail} aria-hidden="true">
         <img src={gung.imgUrl[0]} alt="출처:문화재청" />
       </p>

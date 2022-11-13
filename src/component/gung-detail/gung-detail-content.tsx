@@ -1,6 +1,8 @@
 /* eslint-disable react/no-danger */
 import LikeHart from 'component/like/like-hart';
+import { getLikeCookie } from 'hooks/cookies';
 import { getGungName } from 'hooks/gung-name';
+import { useEffect, useState } from 'react';
 import { GungDetailType, GungInfo } from '../../interface/gung';
 import SubContent from './gung-sub-content';
 
@@ -9,12 +11,30 @@ type GungDetailContentProps = {
 };
 
 function GungDetailContent({ gung }: GungDetailContentProps) {
+  const [likeState, setLikeState] = useState<boolean>(false);
+
   const gungName = getGungName(gung.gung_number[0]);
+  const serialNumber = gung.serial_number[0];
+  const cookies = getLikeCookie();
+
+  useEffect(() => {
+    // 좋아요 쿠킹
+    if (cookies !== undefined) {
+      cookies.forEach((cookie) => {
+        if (cookie === serialNumber) {
+          setLikeState(true);
+        }
+      });
+    } else {
+      setLikeState(false);
+    }
+  }, [cookies]);
+
   return (
     <>
       <div className="d-context">
         <div className="d-like">
-          <LikeHart likeState={false} />
+          <LikeHart likeState={likeState} serialNum={gung.serial_number[0]} />
         </div>
         <h4>{gung.contents_kor[0]}</h4>
         <div className="d-text">
