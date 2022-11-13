@@ -31,7 +31,7 @@ function GungListHeader({
         {
           search: `?view=${view}&sort=${sort}`,
         },
-        // { replace: true },
+        { replace: true },
       );
     }
   }, [view, sort]);
@@ -66,11 +66,7 @@ function GungListHeader({
         >
           <img src={img.viewList} alt="리스트 보기" />
         </span>
-        <select
-          className="list-sort"
-          defaultValue={currentSort}
-          onChange={getSort}
-        >
+        <select className="list-sort" value={currentSort} onChange={getSort}>
           <option value={0}>등록순</option>
           <option value={1}>오름차순</option>
           <option value={2}>내림차순</option>
