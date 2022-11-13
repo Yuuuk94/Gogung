@@ -3,9 +3,11 @@ import { parseXml } from '../parser';
 
 // get Gogung List Data from OpenAPI
 export async function setGungList(gungNm) {
-  const client = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+  const client = axios.create({
+    baseURL: 'https://www.heritage.go.kr/heri/gungDetail',
+  });
   const result = await client
-    .get(`/heri/gungDetail/gogungListOpenApi.do?gung_number=${gungNm}`)
+    .get(`/gogungListOpenApi.do?gung_number=${gungNm}`)
     .then((response) => {
       const dataSet = response.data;
       const parsingData = parseXml(dataSet);
