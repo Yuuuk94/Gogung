@@ -1,59 +1,7 @@
 import { GungListType } from '../interface/gung';
+import { getSession } from './useLike';
 
-// type SortGungType = {
-//   currentSort: number;
-//   gungList: GungListType;
-//   callBack: void;
-// };
-// export function sortGungData({
-//   currentSort,
-//   gungList,
-//   callBack,
-// }: SortGungType) {
-//   if (currentSort === 0) {
-//     gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-//       if (a.serial_number[0] > b.serial_number[0]) {
-//         return 1;
-//       }
-//       if (a.serial_number[0] < b.serial_number[0]) {
-//         return -1;
-//       }
-//       return 0;
-//     });
-//     callBack(gungList);
-//   }
-
-//   if (currentSort === 1) {
-//     gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-//       if (a.contents_kor[0] > b.contents_kor[0]) {
-//         return 1;
-//       }
-//       if (a.contents_kor[0] < b.contents_kor[0]) {
-//         return -1;
-//       }
-//       return 0;
-//     });
-//     callBack(gungList);
-//   }
-
-//   if (currentSort === 2) {
-//     gungList?.sort((a: GungListType, b: GungListType): 1 | 0 | -1 => {
-//       if (a.contents_kor[0] < b.contents_kor[0]) {
-//         return 1;
-//       }
-//       if (a.contents_kor[0] > b.contents_kor[0]) {
-//         return -1;
-//       }
-//       return 0;
-//     });
-//     callBack(gungList);
-//   }
-
-//   if (currentSort === 3) {
-//     console.log('좋아요!');
-//   }
-// }
-
+// 등록순
 export const registeredGung = (gungList: Array<GungListType>) => {
   const list = gungList?.sort(
     (a: GungListType, b: GungListType): 1 | 0 | -1 => {
@@ -69,6 +17,7 @@ export const registeredGung = (gungList: Array<GungListType>) => {
   return list;
 };
 
+// 이름순 정렬
 export const sortGung = (gungList: Array<GungListType>) => {
   const list = gungList?.sort(
     (a: GungListType, b: GungListType): 1 | 0 | -1 => {
@@ -85,6 +34,7 @@ export const sortGung = (gungList: Array<GungListType>) => {
   return list;
 };
 
+// 이름역순 정렬
 export const reverseSortGung = (gungList: Array<GungListType>) => {
   const list = gungList?.sort(
     (a: GungListType, b: GungListType): 1 | 0 | -1 => {
@@ -98,5 +48,14 @@ export const reverseSortGung = (gungList: Array<GungListType>) => {
     },
   );
 
+  return list;
+};
+
+export const likeGung = (gungList: Array<GungListType>) => {
+  const like = getSession();
+  const list = gungList?.filter((gung) =>
+    like.forEach((l) => l === gung.serial_number[0]),
+  );
+  console.log(list);
   return list;
 };
