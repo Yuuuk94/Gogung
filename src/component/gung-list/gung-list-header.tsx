@@ -1,7 +1,6 @@
-/* eslint-disable no-restricted-globals */
 /* eslint-disable camelcase */
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState, ChangeEventHandler } from 'react';
 import grid_view_black_24dp from '../../assets/images/grid_view_black_24dp.svg';
 import view_list_black_24dp from '../../assets/images/view_list_black_24dp.svg';
 
