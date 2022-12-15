@@ -1,7 +1,6 @@
-/* eslint-disable no-restricted-globals */
 /* eslint-disable camelcase */
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState, ChangeEventHandler } from 'react';
 import grid_view_black_24dp from '../../assets/images/grid_view_black_24dp.svg';
 import view_list_black_24dp from '../../assets/images/view_list_black_24dp.svg';
 
@@ -66,11 +65,7 @@ function GungListHeader({
         >
           <img src={img.viewList} alt="리스트 보기" />
         </span>
-        <select
-          className="list-sort"
-          defaultValue={currentSort}
-          onChange={getSort}
-        >
+        <select className="list-sort" value={currentSort} onChange={getSort}>
           <option value={0}>등록순</option>
           <option value={1}>오름차순</option>
           <option value={2}>내림차순</option>

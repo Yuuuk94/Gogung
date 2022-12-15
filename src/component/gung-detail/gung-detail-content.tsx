@@ -1,6 +1,9 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-danger */
 import LikeHart from 'component/like/like-hart';
 import { getGungName } from 'hooks/gung-name';
+import { getSession } from 'hooks/useLike';
+import { useEffect, useState } from 'react';
 import { GungDetailType, GungInfo } from '../../interface/gung';
 import SubContent from './gung-sub-content';
 
@@ -10,11 +13,39 @@ type GungDetailContentProps = {
 
 function GungDetailContent({ gung }: GungDetailContentProps) {
   const gungName = getGungName(gung.gung_number[0]);
+  const serialNumber = gung.serial_number[0];
+
+  const [likeState, setLikeState] = useState<boolean>(false);
+
+  useEffect(() => {
+    const session = getSession();
+    if (session.length > 0) {
+      if (session.includes(serialNumber)) {
+        setLikeState(true);
+      }
+    }
+  }, []);
+
+  function clickHart() {
+    setLikeState(!likeState);
+    // 좋아요
+    if (likeState !== true) {
+      const item = getSession();
+      const sessionItem = item.concat(serialNumber).join();
+      sessionStorage.setItem('likeGung', sessionItem);
+    }
+    // 안 좋아요
+    if (likeState !== false) {
+      const item = getSession();
+      const sessionItem = item.filter((like) => like !== serialNumber).join();
+      sessionStorage.setItem('likeGung', sessionItem);
+    }
+  }
   return (
     <>
       <div className="d-context">
         <div className="d-like">
-          <LikeHart likeState={false} />
+          <LikeHart likeState={likeState} clickHart={clickHart} />
         </div>
         <h4>{gung.contents_kor[0]}</h4>
         <div className="d-text">

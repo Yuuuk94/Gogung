@@ -8,7 +8,12 @@ import dataM from '../data/gogungCategory.json';
 import { getGungList } from '../hooks/api/get-open-api';
 import { GungListType } from '../interface/gung';
 import GungListHeader from '../component/gung-list/gung-list-header';
-import { registeredGung, sortGung, reverseSortGung } from '../hooks/gung-sort';
+import {
+  registeredGung,
+  sortGung,
+  reverseSortGung,
+  likeGung,
+} from '../hooks/gung-sort';
 
 function Gung() {
   // gung-list-data 가져오기
@@ -61,7 +66,7 @@ function Gung() {
         break;
       case 3:
         // 좋아요
-        registeredGung(gungListView);
+        likeGung(gungListView);
         break;
       default:
         setGungListView([]);
