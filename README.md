@@ -4,7 +4,7 @@
 개인 프로젝트
 
 
-React, SCSS, Firebase DB
+React, SCSS, Firebase
 
 
 ### 데모보기	: https://gogung-451c2.web.app/
@@ -21,6 +21,7 @@ React, SCSS, Firebase DB
 *	목록 리스트 보기 및 갤러리 보기
 *	오름차순, 내림차순 정렬
 * 고궁 내부 시설 검색
+* 비로그인 좋아요
 
 ## 분석 및 보완 이슈
 *	함수형 컴포넌트, Router, 파라미터 Hook 등을 사용하였으며, Firebase를 통해 PWA를 배포하였습니다. 웹/앱의 특성상 어떤 디스플레이에서라도 접근할 수 있도록 미디어쿼리를 적용했습니다.
