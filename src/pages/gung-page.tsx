@@ -9,7 +9,6 @@ import { getGungList } from '../hooks/api/get-open-api';
 import { GungListType } from '../interface/gung';
 import GungListHeader from '../component/gung-list/gung-list-header';
 import { registeredGung, sortGung, reverseSortGung } from '../hooks/gung-sort';
-import { getLikeCookie } from '../hooks/cookies';
 
 function Gung() {
   // gung-list-data 가져오기

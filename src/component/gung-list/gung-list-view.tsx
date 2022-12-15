@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import LikeHart from 'component/like/like-hart';
 import { useNavigate } from 'react-router-dom';
-import { getSession } from 'component/gung-detail/gung-detail-content';
+import { getSession } from 'hooks/useLike';
 import { GungListType } from '../../interface/gung';
 
 type ListViewProps = {

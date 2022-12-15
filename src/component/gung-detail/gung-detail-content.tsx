@@ -2,7 +2,7 @@
 /* eslint-disable react/no-danger */
 import LikeHart from 'component/like/like-hart';
 import { getGungName } from 'hooks/gung-name';
-import { useLike } from 'hooks/useLike';
+import { getSession } from 'hooks/useLike';
 import { useEffect, useState } from 'react';
 import { GungDetailType, GungInfo } from '../../interface/gung';
 import SubContent from './gung-sub-content';
@@ -10,16 +10,6 @@ import SubContent from './gung-sub-content';
 type GungDetailContentProps = {
   gung: GungDetailType;
 };
-
-export function getSession() {
-  const session = sessionStorage.getItem('likeGung');
-
-  if (session !== null) {
-    const likeList = session.split(',');
-    return likeList;
-  }
-  return [];
-}
 
 function GungDetailContent({ gung }: GungDetailContentProps) {
   const gungName = getGungName(gung.gung_number[0]);
