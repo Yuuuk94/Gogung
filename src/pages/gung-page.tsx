@@ -21,67 +21,51 @@ function Gung() {
   const gogung = dataM.gogung[Number(num) - 1];
 
   // open data 가져오기
-  const [gungList, setGungList] = useState<Array<GungListType>>();
+  const [gungList, setGungList] = useState<Array<GungListType>>([]);
 
   useEffect(() => {
-    getGungList(num, (result: Array<GungListType>) => {
-      setGungList(result);
-    });
+    const gung = async () => {
+      if (num !== undefined) {
+        const result = await getGungList(num);
+        setGungList(gungList.concat(result));
+      }
+    };
+    gung();
   }, [num]);
-
-  useEffect(() => {
-    if (gungList !== undefined) {
-      setGungListView(gungList);
-    }
-  }, [gungList]);
 
   // query 가져오기
   const query = getGungQuery();
-  const view = query.get('view');
-  const sort = query.get('sort');
-  const [currentView, setView] = useState<number>(Number(view));
-  const [currentSort, setSort] = useState<number>(Number(sort));
-
-  useEffect(() => {
-    setView(Number(view));
-    setSort(Number(sort));
-  }, [query]);
+  const currentSort = Number(query.get('sort'));
 
   // 정렬
-  const [gungListView, setGungListView] = useState<GungListType[]>();
-
-  if (gungListView !== undefined)
+  if (gungList !== undefined)
     switch (currentSort) {
       case 0:
         // 등록순
-        registeredGung(gungListView);
+        registeredGung(gungList);
         break;
       case 1:
         // 이름순 정렬
-        sortGung(gungListView);
+        sortGung(gungList);
         break;
       case 2:
         // 이름역순 정렬
-        reverseSortGung(gungListView);
+        reverseSortGung(gungList);
         break;
       case 3:
         // 좋아요
-        likeGung(gungListView);
+        likeGung(gungList);
         break;
       default:
-        setGungListView([]);
+        setGungList([]);
     }
 
   return (
     <>
-      <GungListHeader
-        gungName={gogung.gung_Name}
-        currentView={currentView}
-        currentSort={currentSort}
-      />
-      {(gungListView && (
-        <ListContainer currentView={currentView} gungList={gungListView} />
-      )) || <div className="loading">로딩 중 ...</div>}
+      <GungListHeader gungName={gogung.gung_Name} />
+      {(gungList && <ListContainer gungList={gungList} />) || (
+        <div className="loading">로딩 중 ...</div>
+      )}
     </>
   );
 }

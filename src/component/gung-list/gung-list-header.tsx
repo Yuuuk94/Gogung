@@ -1,24 +1,19 @@
 /* eslint-disable camelcase */
+import { getGungQuery } from 'hooks/url';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import grid_view_black_24dp from '../../assets/images/grid_view_black_24dp.svg';
-import view_list_black_24dp from '../../assets/images/view_list_black_24dp.svg';
+import graidView from '../../assets/images/grid_view_black_24dp.svg';
+import viewList from '../../assets/images/view_list_black_24dp.svg';
 
 type GungListHeaderProps = {
   gungName: string;
-  currentView: number;
-  currentSort: number;
 };
 
-function GungListHeader({
-  gungName,
-  currentView,
-  currentSort,
-}: GungListHeaderProps) {
-  const img = {
-    graidView: grid_view_black_24dp,
-    viewList: view_list_black_24dp,
-  };
+function GungListHeader({ gungName }: GungListHeaderProps) {
+  // query 가져오기
+  const query = getGungQuery();
+  const currentView = Number(query.get('view'));
+  const currentSort = Number(query.get('sort'));
 
   const [view, setView] = useState<number>(currentView);
   const [sort, setSort] = useState<number>(currentSort);
@@ -35,36 +30,27 @@ function GungListHeader({
     }
   }, [view, sort]);
 
-  function getSort(e: any) {
+  function getSort(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.target;
-    const result = Number(value);
-    setSort(result);
+    setSort(Number(value));
   }
 
-  function getView(num: number) {
-    setView(num);
+  function getView(e: React.MouseEvent<HTMLParagraphElement>) {
+    const button = e.target as HTMLParagraphElement;
+    const actionName = button.getAttribute('data-view');
+    setView(Number(actionName));
   }
 
   return (
     <div className="mwidth gung-title">
       <h2>{gungName}</h2>
-      <p className="list-view">
-        <span
-          onClick={() => {
-            getView(0);
-          }}
-          aria-hidden="true"
-        >
-          <img src={img.graidView} alt="갤러리 보기" />
-        </span>
-        <span
-          onClick={() => {
-            getView(1);
-          }}
-          aria-hidden="true"
-        >
-          <img src={img.viewList} alt="리스트 보기" />
-        </span>
+      <div className="list-view" onClick={getView} aria-hidden="true">
+        <button type="button" data-view="graid">
+          <img src={graidView} alt="갤러리 보기" data-view="0" />
+        </button>
+        <button type="button" data-view="list">
+          <img src={viewList} alt="리스트 보기" data-view="1" />
+        </button>
         <select className="list-sort" value={currentSort} onChange={getSort}>
           <option value={0}>등록순</option>
           <option value={1}>오름차순</option>
@@ -73,7 +59,7 @@ function GungListHeader({
             인기순
           </option>
         </select>
-      </p>
+      </div>
     </div>
   );
 }
