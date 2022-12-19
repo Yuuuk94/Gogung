@@ -1,7 +1,9 @@
 ### 고궁 PWA - 리팩터링
 
 개인 프로젝트
+
 2022. 10 – 2022.11
+
 React, TypeScript, SCSS
 
 ## 데모보기	: https://gogung-451c2.web.app
