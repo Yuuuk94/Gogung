@@ -54,11 +54,7 @@ function SearchBar({ allGungList, getSearch }: SearchBarProps) {
         <span>
           <img src={img.searchWhite} alt="search" />
         </span>
-        <input
-          type="text"
-          placeholder={recommend}
-          onChange={(e) => searchGung(e)}
-        />
+        <input type="text" placeholder={recommend} onChange={searchGung} />
       </div>
     </div>
   );

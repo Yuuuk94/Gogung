@@ -8,26 +8,25 @@ import Search from './pages/search-page';
 import Gung from './pages/gung-page';
 import Gungdetail from './pages/gung-detail-page';
 
-const clientRoutes = [
-  {
-    path: '/',
-    component: <Main />,
-  },
-  {
-    path: '/search',
-    component: <Search />,
-  },
-  {
-    path: '/gung/:num',
-    component: <Gung />,
-  },
-  {
-    path: '/gungdetail',
-    component: <Gungdetail />,
-  },
-];
-
 function App() {
+  const clientRoutes = [
+    {
+      path: '/',
+      component: <Main />,
+    },
+    {
+      path: '/search',
+      component: <Search />,
+    },
+    {
+      path: '/gung/:num',
+      component: <Gung />,
+    },
+    {
+      path: '/gungdetail',
+      component: <Gungdetail />,
+    },
+  ];
   return (
     <>
       <Header />
