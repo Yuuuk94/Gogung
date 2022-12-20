@@ -1,15 +1,16 @@
 /* eslint-disable camelcase */
 import { getGungQuery } from 'hooks/url';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import Gogung from 'data/gogungCategory.json';
 import graidView from '../../assets/images/grid_view_black_24dp.svg';
 import viewList from '../../assets/images/view_list_black_24dp.svg';
 
-type GungListHeaderProps = {
-  gungName: string;
-};
+function GungListHeader() {
+  // gung-list-data 가져오기
+  const { num } = useParams();
+  const gogung = Gogung.gogung[Number(num) - 1];
 
-function GungListHeader({ gungName }: GungListHeaderProps) {
   // query 가져오기
   const query = getGungQuery();
   const currentView = Number(query.get('view'));
@@ -43,7 +44,7 @@ function GungListHeader({ gungName }: GungListHeaderProps) {
 
   return (
     <div className="mwidth gung-title">
-      <h2>{gungName}</h2>
+      <h2>{gogung.gung_Name}</h2>
       <div className="list-view" onClick={getView} aria-hidden="true">
         <button type="button" data-view="graid">
           <img src={graidView} alt="갤러리 보기" data-view="0" />
