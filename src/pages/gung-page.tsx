@@ -20,35 +20,34 @@ function Gung() {
     data: gungList,
     error: gungError,
     isLoading: gungLoading,
-  } = useQuery<GungListType[]>(['gungList'], () => getGungList(num));
+  } = useQuery<GungListType[]>(['gungList'], () => getGungList(num as string));
 
   // query 가져오기
   const query = getGungQuery();
   const currentSort = Number(query.get('sort'));
 
   // 정렬
-  if (gungList !== undefined)
-    switch (currentSort) {
-      case 0:
-        // 등록순
-        registeredGung(gungList);
-        break;
-      case 1:
-        // 이름순 정렬
-        sortGung(gungList);
-        break;
-      case 2:
-        // 이름역순 정렬
-        reverseSortGung(gungList);
-        break;
-      case 3:
-        // 좋아요
-        likeGung(gungList);
-        break;
-      default:
-        // setGungList([]);
-        registeredGung(gungList);
-    }
+  switch (currentSort) {
+    case 0:
+      // 등록순
+      registeredGung(gungList);
+      break;
+    case 1:
+      // 이름순 정렬
+      sortGung(gungList);
+      break;
+    case 2:
+      // 이름역순 정렬
+      reverseSortGung(gungList);
+      break;
+    case 3:
+      // 좋아요
+      likeGung(gungList);
+      break;
+    default:
+      // setGungList([]);
+      registeredGung(gungList);
+  }
 
   return (
     <>

@@ -7,7 +7,7 @@ import SearchBar from 'component/search/search-bar';
 import SearchResult from 'component/search/search-result';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import Gogung from 'data/gogungCategory.json';
-import { getAllGungList, getGungList } from '../hooks/api/get-open-api';
+import { getGungList } from '../hooks/api/get-open-api';
 
 function Search() {
   // const [allGungList, setAllGungList] = useState<GungListType[]>([]);
@@ -32,7 +32,7 @@ function Search() {
   // }, [result[0].isSuccess]);
   const { data: gungList, isLoading: gungLoading } = useQuery<GungListType[]>(
     ['allGungList'],
-    () => getGungList(0),
+    () => getGungList('0'),
   );
 
   // 검색결과 가져오기
