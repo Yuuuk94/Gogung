@@ -12,7 +12,7 @@ import { getGungList } from '../hooks/api/get-open-api';
 function Search() {
   // const [allGungList, setAllGungList] = useState<GungListType[]>([]);
 
-  // open data 가져오기
+  // // open data 가져오기
   // const result = useQueries({
   //   queries: Gogung.gogung.map((gung) => {
   //     return {
@@ -29,11 +29,11 @@ function Search() {
   //     }
   //   });
   //   console.log(result);
-  // }, [result[0].isSuccess]);
-  const { data: gungList, isLoading: gungLoading } = useQuery<GungListType[]>(
-    ['allGungList'],
-    () => getGungList('0'),
-  );
+  // }, [result[2].isSuccess]);
+
+  const { data: allGungList, isLoading: gungLoading } = useQuery<
+    GungListType[]
+  >(['allGungList'], () => getGungList('0'));
 
   // 검색결과 가져오기
   const [search, setSearch] = useState<Array<GungListType>>();
@@ -44,7 +44,9 @@ function Search() {
 
   return (
     <>
-      {gungList && <SearchBar allGungList={gungList} getSearch={getSearch} />}
+      {allGungList && (
+        <SearchBar allGungList={allGungList} getSearch={getSearch} />
+      )}
       {gungLoading && <div className="loading">로딩 중 ...</div>}
       {search && <SearchResult search={search} />}
     </>

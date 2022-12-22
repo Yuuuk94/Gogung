@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GungListType } from '../../interface/gung';
-import { parseXml } from '../parser';
+import { parseXmlList } from '../parser';
 
 // get Gogung List Data from OpenAPI
 export async function getGungList(gungNm: string): Promise<GungListType[]> {
@@ -12,8 +12,7 @@ export async function getGungList(gungNm: string): Promise<GungListType[]> {
     .then((response) => {
       const dataSet = response.data;
       // xml 파싱
-      const parsingData = parseXml(dataSet);
-
+      const parsingData = parseXmlList(dataSet);
       return parsingData.result.list;
     })
     .catch((err) => console.error(err));

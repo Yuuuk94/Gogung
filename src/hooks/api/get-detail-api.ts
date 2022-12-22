@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { GungDetailType } from 'interface/gung';
+import { ParsedQs } from 'qs';
 import { parseXml } from '../parser';
 
 // get Gogung List Data from OpenAPI
-export async function setGungDetail(query) {
+export async function getGungDetail(query: ParsedQs): Promise<GungDetailType> {
   const client = axios.create({
     baseURL: 'https://www.heritage.go.kr/heri/gungDetail',
   });
@@ -16,17 +18,5 @@ export async function setGungDetail(query) {
       return parsingData.result;
     })
     .catch((err) => console.error(err));
-
-  return result;
-}
-
-export async function getGungDetail(query, callBack) {
-  try {
-    const promise = setGungDetail(query);
-    promise.then((data) => {
-      callBack(data);
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  return result as GungDetailType;
 }

@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { getGungDetail } from 'hooks/api/get-detail-api';
 import GungDetailContent from 'component/gung-detail/gung-detail-content';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import { GungDetailType } from '../interface/gung';
 import { getQuery } from '../hooks/url';
 
@@ -10,22 +12,16 @@ function Gungdetail() {
   const query = getQuery();
 
   // gung detail data 가져오기
-  const [gung, setGung] = useState<GungDetailType>();
-
-  useEffect(() => {
-    async function api() {
-      await getGungDetail(query, (result: GungDetailType) => {
-        setGung(result);
-      });
-    }
-    api();
-  }, []);
+  const {
+    data: gung,
+    error: gungError,
+    isLoading: gungLoading,
+  } = useQuery<GungDetailType>(['gungDetail'], () => getGungDetail(query));
 
   return (
     <div className="mwidth detail-contain">
-      {(gung && <GungDetailContent gung={gung} />) || (
-        <div className="loading">로딩 중 ...</div>
-      )}
+      {gung && <GungDetailContent gung={gung} />}
+      {gungLoading && <div className="loading">로딩 중 ...</div>}
     </div>
   );
 }

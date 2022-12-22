@@ -1,6 +1,24 @@
 import xml2js from 'xml2js';
 
 type ParserResultType = {
+  result: unknown;
+};
+
+// parsing xml to json
+export function parseXml(dataSet: string) {
+  let result: ParserResultType = {
+    result: '',
+  };
+  xml2js.parseString(dataSet, { trim: true }, (err, jsonData) => {
+    if (err) {
+      console.log(err);
+    }
+    result = { ...jsonData };
+  });
+  return result;
+}
+
+type ParserResultListType = {
   result: {
     list: unknown[];
     total: string[];
@@ -8,8 +26,8 @@ type ParserResultType = {
 };
 
 // parsing xml to json
-export function parseXml(dataSet: string) {
-  let result: ParserResultType = {
+export function parseXmlList(dataSet: string) {
+  let result: ParserResultListType = {
     result: {
       list: [],
       total: [],
@@ -18,9 +36,8 @@ export function parseXml(dataSet: string) {
   xml2js.parseString(dataSet, { trim: true }, (err, jsonData) => {
     if (err) {
       console.log(err);
-    } else {
-      result = { ...jsonData };
     }
+    result = { ...jsonData };
   });
   return result;
 }
