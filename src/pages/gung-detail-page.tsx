@@ -1,9 +1,6 @@
-/* eslint-disable react/no-danger */
-import { useEffect, useState } from 'react';
 import { getGungDetail } from 'hooks/api/get-detail-api';
 import GungDetailContent from 'component/gung-detail/gung-detail-content';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import { GungDetailType } from '../interface/gung';
 import { getQuery } from '../hooks/url';
 
